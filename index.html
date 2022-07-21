@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja"></html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Along the coast</title>
+    <title>TextAlive App API | basic example</title>
+    <link rel="stylesheet" href="./src/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  </head>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
+<script>
+  const { Player } = TextAliveApp;
+</script>
+  <body>
+    <!-- <div class="comp"><img src="../img/comp.jpg"></div> -->
+    <div class="road"><img src="./img/road.png"></div>
+    <div class="grass"><img src="./img/grass.png"></div>
+    <div class="light"><img src="./img/light.png"></div>
+    <div class="guardrail"><img src="./img/guardrail_1.png"></div>
+    <div class="guardrail2"><img src="./img/guardrail_2.png"></div>
+    <div class="guardrail3"><img src="./img/guardrail_3.png"></div>
+    <div class="guardrail4"><img src="./img/guardrail_4.png"></div>
+    <div class="car"><img src="./img/car.png"></div>
+    <div class="tire"><img src="./img/tire.png"></div>
+    <div class="tire1"><img src="./img/tyre_1.png"></div>
+    <div class="tire2"><img src="./img/tyre_2.png"></div>
+    <div class="tire3"><img src="./img/tyre_3.png"></div>
+    <div class="tire4"><img src="./img/tyre_4.png"></div>
+    <div class="sea1"><img src="./img/sea_1.png"></div>
+    <div class="sea2"><img src="./img/sea_2.png"></div>
+    <div class="sea3"><img src="./img/sea_3.png"></div>
+    <div class="sea4"><img src="./img/sea_4.png"></div>
+    <div class="sea5"><img src="./img/sea_5.png"></div>
+    <div class="miku1"><img src="./img/miku_ver1.png"></div>
+    <div class="miku2"><img src="./img/miku_ver2.png"></div>
+    <div class="hairN1"><img src="./img/hairN_1.png"></div>
+    <div class="hairN2"><img src="./img/hairN_2.png"></div>
+    <div class="hairN3"><img src="./img/hairN_3.png"></div>
+    <div class="hairN4"><img src="./img/hairN_4.png"></div>
+    <div class="hairN5"><div id="toch"><button class="songSelect" class="play"></button></div><img src="./img/hairN_5.png"></div>
+    <div class="hair1"><img src="./img/hair_1.png"></div>
+    <div class="hair2"><img src="./img/hair_2.png"></div>
+    <div class="hair3"><img src="./img/hair_3.png"></div>
+    <div class="hair4"><img src="./img/hair_4.png"></div>
+    <div class="hair5"><div id="toch"><button class="songSelect" class="play"></button></div><img src="./img/hair_5.png"></div>
+    <div class="nowSong"><p class="nowS">Loading Memories</p><p class="nowA">せきこみごはん feat. 初音ミク</p></div>
+    <div id="overlay">
+      <h1>Along the coast</h1>
+      <div class="conte">
+        <p><img src="./img/tutorial.png"></p>
+        <p>車のカーステレオのモニターをクリックすると曲が変わります。</p>
+      </div>
+      <div class="playWrap">
+        <div class="songList">
+          <p>曲順</p>
+          <ul>
+            <li>Loading Memories</li>
+            <li>青に溶けた風船</li>
+            <li>歌の欠片と</li>
+            <li>未完のストーリー</li>
+            <li>みはるかす</li>
+            <li>fear</li>
+          </ul>
+        </div>
+        <button class="play" disabled>▶︎</button>
+      </div>
+    </div>
+    <div id="media"></div>
+    <div id="header">
+      <div id="meta">
+        <div class="artist"><strong>artist:</strong> <span>-</span></div>
+        <div class="song"><strong>song:</strong> <span>-</span></div>
+      </div>
+      <ul>
+        <li>発声中の歌詞テキストがあれば表示されます</li>
+        <li>
+          <a>TextAlive ホストの有無</a>により再生コントロールの表示状態が切り替わります
+        </li>
+      </ul>
+    </div>
+    <div id="footer">
+      <p>
+        <span id="position"><strong>-</strong> [ms]</span>
+      </p>
+      <div id="control" style="display: none">
+        <button class="play" disabled>再生</button>
+        <button id="jump" disabled>歌詞頭出し</button>
+        <button id="pause" disabled>一時停止</button>
+        <button id="rewind" disabled>巻き戻し</button>
+      </div>
+      <div id="maru"><p id="text"></p></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="./src/index.js"></script>
+  </body>
+</html>
